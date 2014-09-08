@@ -1,0 +1,18 @@
+<%= form_for [:patient, @prescription] do |f| %>
+  <%= f.label :medication %>
+  <%= f.select :medication, @medications, include_blank: "Please choose a medication..." %>
+
+  <%= f.label :dosage %>
+  <%= f.text_field :dosage %>
+
+  <%= f.label :schedule %>
+  <%= f.text_field :schedule %>
+
+  <%= f.label :starts_on %>
+  <%= f.text_field :starts_on, class: "cal-date"  %>
+
+  <%= f.label :ends_on %>
+  <%= f.text_field :ends_on, class: "cal-date" %>
+
+  <%= f.submit %>
+<% end %>

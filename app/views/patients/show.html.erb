@@ -1,3 +1,8 @@
+<% if flash[:notice] %>
+  <div><%= flash[:notice] %></div>
+  <% end %>
+
 <h1><%= @patient.first_name + " " + @patient.last_name %></h1>
 
 <h1>Prescriptions</h1>
+<%= link_to "Add Prescription", new_patient_prescription_path(@patient.id) %>

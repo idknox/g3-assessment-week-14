@@ -21,4 +21,22 @@ feature "Patients" do
     expect(page).to have_content(patient.first_name, patient.last_name, "Prescriptions")
   end
 
+  scenario "User can add prescriptions" do
+    user = create_user
+    patient = create_patient
+    medication = create_medication
+
+    login(user)
+    click_on patient.first_name
+    click_on "Add Prescription"
+
+    page.select medication.name, :from => "Medication"
+    fill_in "Dosage", :with => "1 pill"
+    fill_in "Schedule", :with => "every 4 hours"
+    fill_in "Starts on", :with => "09/17/2014"
+    fill_in "Ends on", :with => "09/18/2014"
+    click_on "Create Prescription"
+
+    expect(page).to have_content("Your prescription has been created", patient.first_name, "Tylenol", "1 pill every 4 hours", "09/17/2014 - 09/18/2014")
+  end
 end
