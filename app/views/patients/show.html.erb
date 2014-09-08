@@ -1,8 +1,24 @@
 <% if flash[:notice] %>
   <div><%= flash[:notice] %></div>
-  <% end %>
+<% end %>
 
 <h1><%= @patient.first_name + " " + @patient.last_name %></h1>
 
 <h1>Prescriptions</h1>
 <%= link_to "Add Prescription", new_patient_prescription_path(@patient.id) %>
+
+<table>
+  <tr>
+  <th>Medication</th>
+  <th>Dosage / Schedule</th>
+  <th>Dates</th>
+  </tr>
+
+  <% @patient.prescriptions.each do |prescription| %>
+    <tr>
+      <td><%= prescription.medication_name %></td>
+      <td><%= prescription.dosage %> <%= prescription.schedule %></td>
+      <td><%= prescription.start_date %> - <%= prescription.end_date %></td>
+    </tr>
+  <% end %>
+</table>

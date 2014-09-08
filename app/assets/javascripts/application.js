@@ -6,7 +6,7 @@
 $(document).ready(function () {
 
   $(function () {
-    $('.cal-date').datepicker({ dateFormat: "dd-mm-yy"});
+    $('.cal-date').datepicker({ dateFormat: "mm/dd/yy"});
   });
 
 });

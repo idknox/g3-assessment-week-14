@@ -39,4 +39,21 @@ feature "Patients" do
 
     expect(page).to have_content("Your prescription has been created", patient.first_name, "Tylenol", "1 pill every 4 hours", "09/17/2014 - 09/18/2014")
   end
+
+  scenario "create script page displays errors" do
+    user = create_user
+    patient = create_patient
+    login(user)
+
+    click_on patient.first_name
+    click_on "Add Prescription"
+    click_on "Create Prescription"
+
+    expect(page).to have_content("Your prescription could not be saved")
+    expect(page).to have_content("Medication can't be blank")
+    expect(page).to have_content("Dosage can't be blank")
+    expect(page).to have_content("Schedule can't be blank")
+    expect(page).to have_content("Start date can't be blank")
+    expect(page).to have_content("End date can't be blank")
+  end
 end

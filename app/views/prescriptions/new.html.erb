@@ -1,18 +1,32 @@
 <%= form_for [:patient, @prescription] do |f| %>
-  <%= f.label :medication %>
-  <%= f.select :medication, @medications, include_blank: "Please choose a medication..." %>
+  <ul>
+    <li>
+      <% if f.object.errors.any? %>
+        <div class="errors">
+          <ul>
+            <li>Your prescription could not be saved</li>
+            <% f.object.errors.full_messages.each do |error| %>
+              <li><%= error %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <%= f.label :dosage %>
-  <%= f.text_field :dosage %>
+      <li><%= f.label :medication %></li>
+      <li><%= f.select :medication_name, @medications, include_blank: "Please choose a medication..." %></li>
 
-  <%= f.label :schedule %>
-  <%= f.text_field :schedule %>
+      <li><%= f.label :dosage %></li>
+      <li><%= f.text_field :dosage %></li>
 
-  <%= f.label :start_date %>
-  <%= f.text_field :start_date, class: "cal-date"  %>
+      <li><%= f.label :schedule %></li>
+      <li><%= f.text_field :schedule %></li>
 
-  <%= f.label :end_date %>
-  <%= f.text_field :end_date, class: "cal-date" %>
+      <li><%= f.label :start_date %></li>
+      <li><%= f.text_field :start_date, class: "cal-date" %></li>
 
-  <%= f.submit %>
+      <li><%= f.label :end_date %></li>
+      <li><%= f.text_field :end_date, class: "cal-date" %></li>
+
+      <li><%= f.submit %></li>
+      </ul>
 <% end %>
